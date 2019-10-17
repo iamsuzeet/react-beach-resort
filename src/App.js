@@ -1,23 +1,25 @@
 import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { SingleRoom } from "./pages/SingleRoom";
+import Rooms from "./pages/Rooms";
+import Home from "./pages/Home";
+import Error from "./pages/Error";
+import Navbar from "./components/Navbar";
+
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Switch>
+        <Route path="/rooms/:slug" component={SingleRoom} />
+        <Route path="/rooms" component={Rooms} />
+        <Route path="/not-found" component={Error} />
+        <Route path="/" exact component={Home} />
+        <Redirect to="/not-found" />
+      </Switch>
+    </>
   );
 }
 
