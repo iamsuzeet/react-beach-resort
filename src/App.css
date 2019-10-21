@@ -159,13 +159,14 @@ h6 {
 .defaultHero,
 .roomsHero {
   min-height: calc(100vh - 66px);
-  background: url("./images/defaultBcg.jpeg") center/cover no-repeat;
+  background: url("https://firebasestorage.googleapis.com/v0/b/beach-resort-32e44.appspot.com/o/defaultBcg.jpeg?alt=media&token=716e6171-b060-4f65-9627-59866d4bad10")
+    center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .roomsHero {
-  background-image: url("./images/room-2.jpeg");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/beach-resort-32e44.appspot.com/o/room-2.jpeg?alt=media&token=9e770e75-ddc8-484e-af48-7f1cfc31c197");
   min-height: 60vh;
 }
 /* End of Hero */

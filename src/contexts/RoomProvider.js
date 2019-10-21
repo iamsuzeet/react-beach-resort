@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import items from "../data";
+// import items from "../data";
+import axios from "axios";
 
 //context api
 const RoomContext = React.createContext();
@@ -26,19 +27,44 @@ export class RoomProvider extends Component {
   //get Data
 
   componentDidMount() {
-    let rooms = this.formatData(items);
-    let featuredRooms = rooms.filter(room => room.featured === true);
-    let maxPrice = Math.max(...rooms.map(item => item.price));
-    let maxSize = Math.max(...rooms.map(item => item.size));
-    this.setState({
-      rooms,
-      featuredRooms,
-      sortedRooms: rooms,
-      loading: false,
-      price: maxPrice,
-      maxPrice,
-      maxSize
-    });
+    // local data //
+
+    // let rooms = this.formatData(items);
+    // let featuredRooms = rooms.filter(room => room.featured === true);
+    // let maxPrice = Math.max(...rooms.map(item => item.price));
+    // let maxSize = Math.max(...rooms.map(item => item.size));
+    // this.setState({
+    //   rooms,
+    //   featuredRooms,
+    //   sortedRooms: rooms,
+    //   loading: false,
+    //   price: maxPrice,
+    //   maxPrice,
+    //   maxSize
+    // });
+
+    //using firebase
+    axios
+      .get("https://beach-resort-32e44.firebaseio.com/rooms.json")
+      .then(res => {
+        const data = res.data;
+        const items = data.slice(1);
+
+        let rooms = this.formatData(items);
+        let featuredRooms = rooms.filter(room => room.featured === true);
+        let maxPrice = Math.max(...rooms.map(item => item.price));
+        let maxSize = Math.max(...rooms.map(item => item.size));
+        this.setState({
+          rooms,
+          featuredRooms,
+          sortedRooms: rooms,
+          loading: false,
+          price: maxPrice,
+          maxPrice,
+          maxSize
+        });
+        console.log(this.state.rooms);
+      });
   }
 
   formatData(items) {
