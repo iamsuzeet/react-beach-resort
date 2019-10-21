@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import defaultBcg from "../images/room-1.jpeg";
+
+import { defaultImg } from "../imageSouce";
+
 // import Hero from "./../components/Hero";
 import Banner from "./../components/Banner";
 
@@ -11,7 +13,7 @@ import StyledHero from "./../components/StyledHero";
 export class SingleRoom extends Component {
   state = {
     slug: this.props.match.params.slug,
-    defaultBcg
+    defaultImg
   };
 
   static contextType = RoomContext;
